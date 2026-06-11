@@ -2,7 +2,27 @@
 
 # AI Product Council
 
+[![License: CC BY 4.0](https://img.shields.io/badge/license-CC%20BY%204.0-green)](LICENSE) [![Release](https://img.shields.io/github/v/tag/Akitamex/ai-product-council?label=release)](https://github.com/Akitamex/ai-product-council/releases)
+
 A multi-agent review workflow for product decisions, runnable with Claude Code. Five persona agents debate your decision in parallel, a mediator synthesizes where they agree and where they collide, and you rule on the conflicts before anything gets built.
+
+## What it looks like when it earns its keep
+
+From [a full example run](examples/run-2-brewlog-social-feed.md): an indie developer asks the council about adding a social feed via a free third-party SDK. The risk persona returns the council's rarest verdict:
+
+```text
+### Risk
+**Veto status:** VETO: the plan inherently uploads two categories of
+personal data to a third-party service without informed consent,
+breaking the product's stated privacy boundary.
+
+1. Contact-matching uploads the user's address book. This is not a
+   sloppy-implementation risk: it is how contact-matching works.
+2. Brew photos (EXIF: GPS, timestamps) leave the device for an external
+   CDN, while the App Store page says "your data stays on your device."
+```
+
+The mediator blocks approval, presents two outs (revise the plan, or override on the record), and the human picks the on-device version. A solo prompt would have answered "great idea, here are some tips for shipping it in a week."
 
 I'm a Head of Product. This is the distilled version of the workflow I run before every non-trivial change on my own projects: one model giving one opinion is a yes-man, five personas with different stakes is a review.
 
